@@ -1,6 +1,0 @@
-Config={window_width=1418}
-Config={window_tab_selected=Kontakte}
-Config={window_height=1020}
-Config={window_x=86}
-Config={filterPersonWichtig=false}
-Config={window_y=39}
