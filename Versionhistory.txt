@@ -1,0 +1,113 @@
+TODO:
+-Musik
+-Filme
+-Bücher
+-Bilder
+-Personen Gruppen als csv File speichern
+-Importieren von CSV dateien
+-------------------------------
+Version                   |
+-------------------------------
+
+-------------------------------
+Version 1.53                  |
+-------------------------------
+-AnzeigeBug behoben
+-TaskTab wird angezeigt
+-viele Warnungen behoben
+-------------------------------
+Version 1.51                  |
+-------------------------------
+-AnzeigeBug behoben, Kontakte sollten jetzt immer vollständig angezeigt werden
+-"This will last some time" dialog anzeigen beim erstellen eines backup
+-Fenster öffnet sofort, danach werden Daten geladen
+-"Eventuell Bug beim Entfernen von Person, bleibt diese
+ bei den Gruppen noch gespeichert" behoben
+-------------------------------
+Version 1.5                   |
+-------------------------------
+-ArchivP fertig
+-SMS fertig, Scrollspeed geändert
+ Bei anwählen eines Kontakts wird nach oben gescrollt
+-Anzeige Fehler bei Kontakten behoben
+-------------------------------
+Version 1.49                  |
+-------------------------------
+-SMS Tab eingefügt, geladene SMS werden angezeigt
+-Diverse Fehler behoben
+-Anzeige der SMS verbessert
+-Doppelte Aufrufe aus den ListSelectionListeners verhindert
+-Swing Helper eingeführt um TitledBorders zu erstellen
+-Fehler im helpers.Date verbessert, i&m werden nun immer doppelstellig angezeigt
+-------------------------------
+Version 1.48                  |
+-------------------------------
+-Ordnerstruktur + Files werden angelegt falls nicht vorhanden
+-Bug behoben. Beschreibung wird immer für richtiger Typ
+ Person/Gruppe gespeichert
+-Asynchrones Laden der Kontaktbilder, Worker eingeführt
+-SMS laden, SMS können dargestellt werden
+ SMS Tab fehlt aber noch
+-------------------------------
+Version 1.47                  |
+-------------------------------
+-ArchivP mit Symbolen,Hinweisen
+-ArchivP Ausschneiden Einfügen
+-------------------------------
+Version 1.46                  |
+-------------------------------
+-ArchivP löschen,hinzufügen
+-------------------------------
+Version 1.45                  |
+-------------------------------
+-ArchivP anzeigen
+-Knoten umbenennen
+-ArchivP Speichern
+-------------------------------
+Version 1.44                  |
+-------------------------------
+-Anzeige erfolgt wieder gut, keine invalidates mehr
+-Beschreibung der Gruppe vergrössert
+-Bei neu ausgewähltem Inhalt der kleiner ist erscheint
+ immer noch fehlerhafte Stellen
+ z.B: nach Gruppe löschen
+
+-------------------------------
+Version 1.43                  |
+-------------------------------
+-Auswahl funktioniert nun wieder
+-Wechseln der Auswahl bei ausgewählter Gruppe und Person via Tabreiter
+-Entfernen von Gruppenmitglieder möglich
+-Hinzufügen von (bereits-)Mitgliedern nicht mehr möglich
+
+-------------------------------
+Version 1.42                  |
+-------------------------------
+-Selektion bei ändern des Filters beibehalten -> im Filter implementieren
+-ModalityType vom Toolfenster ändern, so dass nur einmal für eine Gruppe ein Fenster geöffnet
+ werden kann. Beim anwählen des hauptfensters in der taskleiste sollten die unterfenster
+ ebenfalls in den vordergrund rücken.
+-Falls Person Beschreibung ändert -> ändert Beschreibung in der akt
+ angewählten Gruppe ~ [BEHOBEN]
+-Bei ausgewählter Gruppe Personen in Liste filtern
+-Button Kontakt/Gruppe erstellen
+-Funktionen wie Personenfilter gehen wieder
+-Hinzufügen von Personen zu einer Gruppe via Toolfenster mit Filter
+
+-------------------------------
+Version 1.41                  |
+-------------------------------
+-personenFilter Objekt eingebaut
+-besserer Standard
+-Fehler behoben
+-erneut lauffähig
+-Funktionen zum Teil nicht mehr lauffähig
+-Personenfilter x.y oder x y = Filter für Name & Vorname oder Initialen
+
+-------------------------------
+Version 1.4                   |
+-------------------------------
+-Attribut MSN,ICQ,Land
+-PLZ für Stadt
+-Rahmen um Kontaktbild
+-Fehlende Infos ev. ausblenden
