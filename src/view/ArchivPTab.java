@@ -201,9 +201,10 @@ public class ArchivPTab extends JPanel {
 		while (curRows > displayRows) {
 
 			int depthColl = treeRoot.getDepth();
-			Enumeration order = treeRoot.postorderEnumeration();
+			@SuppressWarnings("unchecked")
+			Enumeration<DefaultMutableTreeNode> order = treeRoot.postorderEnumeration();
 			while (order.hasMoreElements()) {
-				DefaultMutableTreeNode nnode = (DefaultMutableTreeNode) order.nextElement();
+				DefaultMutableTreeNode nnode = order.nextElement();
 				System.out.println("level: " + nnode.getDepth() + " / " + depthColl);
 				if (nnode.getDepth() == 1) {
 					System.out.println("collapse: " + nnode.toString());

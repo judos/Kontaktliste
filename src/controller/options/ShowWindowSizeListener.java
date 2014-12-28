@@ -7,17 +7,15 @@ import controller.Options;
 
 public class ShowWindowSizeListener implements ActionListener {
 
-	private Options options;
+	private Options	options;
 
 	public ShowWindowSizeListener(Options options) {
-		this.options=options;
+		this.options = options;
 	}
 
+	@Override
 	public void actionPerformed(ActionEvent arg0) {
 		this.options.showWindowSize();
-		
-		
-		
 	}
 
 }

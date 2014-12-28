@@ -85,7 +85,7 @@ public class ImportController {
 	private File selectFile() {
 		// File desktop = FileH.getDesktopDir();
 		// XXX: AFTER IMPORT reset initial path
-		File f = FileH.RequestFile("D:\\julian\\Dropbox\\Eclipse Projects\\Kontaktliste\\insert",
+		File f = FileH.RequestFile("D:\\Julian\\eclipse workspace juno\\Kontaktliste\\insert",
 			"CSV-Datei", new String[] { "csv" });
 		return f;
 	}

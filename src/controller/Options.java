@@ -1,12 +1,11 @@
 package controller;
 
-import helpers.Basic;
-
 import java.awt.event.KeyEvent;
 
 import model.Savable;
 import view.OptionsTab;
 import view.Window;
+import ch.judos.generic.gui.Notification;
 
 public class Options implements Savable {
 
@@ -31,6 +30,6 @@ public class Options implements Savable {
 	}
 
 	public void showWindowSize() {
-		Basic.notify("Fenstergrösse", this.window.getSize().toString());
+		Notification.notifyInfo("Fenstergrösse", this.window.getSize().toString());
 	}
 }
