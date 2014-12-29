@@ -9,6 +9,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.HashMap;
 
+import javax.swing.GroupLayout;
 import javax.swing.JButton;
 import javax.swing.JComboBox;
 import javax.swing.JDialog;
@@ -21,6 +22,7 @@ import model.importcsv.CsvTableData;
 import model.kontakte.PersonEnum;
 import view.Images;
 import ch.judos.generic.data.DynamicList;
+import ch.judos.generic.swing.GroupLayoutUtils;
 
 public class AttributeMatchDialog extends JDialog {
 	private static final long	serialVersionUID	= -3161442417947618540L;
@@ -59,7 +61,7 @@ public class AttributeMatchDialog extends JDialog {
 		GridBagConstraints c = new GridBagConstraints();
 		c.insets = new Insets(5, 10, 5, 10);
 		c.weightx = 1;
-		c.weighty = 1;
+		c.weighty = 0;
 		c.ipadx = 3;
 		c.ipady = 3;
 
@@ -67,14 +69,17 @@ public class AttributeMatchDialog extends JDialog {
 		addHorizontalSeparator(c);
 		createIdentifierAttributes(c);
 		addHorizontalSeparator(c);
+		c.weighty = 1;
 		createScrollPaneWithAttributesMath(c, examplesForAtts);
+		c.weighty = 0;
 		addHorizontalSeparator(c);
 		okAndCancelDialog(c);
 
 		checkIdentificationInputOk();
 	}
 
-	private void createScrollPaneWithAttributesMath(GridBagConstraints c, String[] examplesForAtts) {
+	private void createScrollPaneWithAttributesMath(GridBagConstraints c,
+			String[] examplesForAtts) {
 		c.gridy++;
 		c.weightx = 1;
 		c.weighty = 1;
@@ -90,8 +95,8 @@ public class AttributeMatchDialog extends JDialog {
 	private void checkIdentificationInputOk() {
 		String prename = (String) this.name1.getSelectedItem();
 		String surname = (String) this.name2.getSelectedItem();
-		if (this.atts_csv.contains(prename) && this.atts_csv.contains(surname) && !surname
-			.equals(prename))
+		if (this.atts_csv.contains(prename) && this.atts_csv.contains(surname)
+			&& !surname.equals(prename))
 			this.okButton.setEnabled(true);
 		else
 			this.okButton.setEnabled(false);
@@ -135,7 +140,8 @@ public class AttributeMatchDialog extends JDialog {
 		c.gridwidth = 1;
 		c.weightx = 1;
 		c.anchor = GridBagConstraints.WEST;
-		DynamicList<Object> selectList = new DynamicList<Object>(PersonEnum.all.toArray());
+		DynamicList<Object> selectList =
+			new DynamicList<Object>(PersonEnum.all.toArray());
 		selectList.add(0, "-nicht speichern-");
 		Object[] select = selectList.toArray();
 		for (int i = 0; i < this.atts_csv.size(); i++) {
@@ -166,8 +172,10 @@ public class AttributeMatchDialog extends JDialog {
 		c.gridx = 0;
 		c.gridy = 0;
 		c.gridwidth = 4;
-		JLabel title = new JLabel(
-			"<html>Um die CSV-Datei zu importieren, " + "müssen Sie wählen welche Informationen<br>durch welche " + "Attribute der CSV-Datei ergänzt werden sollen.</html>");
+		JLabel title =
+			new JLabel("<html>Um die CSV-Datei zu importieren, "
+				+ "müssen Sie wählen welche Informationen<br>durch welche "
+				+ "Attribute der CSV-Datei ergänzt werden sollen.</html>");
 		title.setPreferredSize(new Dimension(750, 80));
 		title.setMinimumSize(new Dimension(750, 80));
 		title.setFont(new Font("Arial", 1, 18));
@@ -183,16 +191,22 @@ public class AttributeMatchDialog extends JDialog {
 	}
 
 	private void createIdentifierAttributes(GridBagConstraints c) {
-		c.gridy = 2;
-		c.gridwidth = 1;
+		c.gridy++; // will be 2 now
+		JPanel con = new JPanel();
+		GroupLayout layout = new GroupLayout(con);
+		con.setLayout(layout);
+		layout.setAutoCreateContainerGaps(true);
+		layout.setAutoCreateGaps(true);
+
 		DynamicList<String> x = new DynamicList<String>(atts_csv);
 		x.add(0, "-");
 		String[] atts_identifier = x.toArray(new String[] {});
 		name1 = new JComboBox<String>(atts_identifier);
 		name1.setSelectedIndex(0);
-		int index = -1;
-		if ((index = listContains(x,
-			new String[] { "vorname", "prename", "givenname", "first name", "firstname" })) > -1) {
+		int index;
+		if ((index =
+			listContains(x, new String[] { "vorname", "prename", "givenname",
+				"first name", "firstname" })) > -1) {
 			name1.setSelectedIndex(index);
 		}
 		name1.addActionListener(new ActionListener() {
@@ -201,10 +215,14 @@ public class AttributeMatchDialog extends JDialog {
 				checkIdentificationInputOk();
 			}
 		});
+
+		JLabel label1 = new JLabel("Vorname:");
+
 		name2 = new JComboBox<String>(atts_identifier);
 		name2.setSelectedIndex(0);
-		if ((index = listContains(x,
-			new String[] { "familyname", "nachname", "name", "last name", "lastname" })) > -1) {
+		if ((index =
+			listContains(x, new String[] { "familyname", "nachname", "name", "last name",
+				"lastname" })) > -1) {
 			name2.setSelectedIndex(index);
 		}
 		name2.addActionListener(new ActionListener() {
@@ -213,19 +231,25 @@ public class AttributeMatchDialog extends JDialog {
 				checkIdentificationInputOk();
 			}
 		});
-		c.gridx = 0;
-		this.content.add(name1, c);
-		c.gridx = 1;
-		c.gridwidth = 2;
-		this.content.add(name2, c);
-		c.gridx = 3;
-		c.gridwidth = 1;
-		String l1 = "<html>Wähle Attribute aus um die Person zu identifizieren.<br>" + "Um Informationen einer Person hinzuzufügen,<br>" + "muss Vorname und Nachname bekannt sein.</html>";
+		JLabel label2 = new JLabel("Name:");
+
+		String l1 =
+			"<html>Wähle Attribute aus um eine Person zu identifizieren.<br>"
+				+ "Um Informationen einer Person hinzuzufügen,<br>"
+				+ "muss Vorname und Nachname bekannt sein.</html>";
 		JLabel identifier = new JLabel(l1);
 		identifier.setMinimumSize(new Dimension(380, 60));
 		identifier.setPreferredSize(new Dimension(380, 60));
 		identifier.setFont(new Font("Arial", 1, 14));
-		this.content.add(identifier, c);
+
+		GroupLayoutUtils g = new GroupLayoutUtils(layout);
+
+		layout.setHorizontalGroup(g.seqIn(identifier).par(name1, label1).par(name2,
+			label2).end());
+		layout.setVerticalGroup(g.parIn(identifier).seqIn().par(label1, label2).par(
+			name1, name2).out().end());
+
+		this.content.add(con, c);
 
 	}
 

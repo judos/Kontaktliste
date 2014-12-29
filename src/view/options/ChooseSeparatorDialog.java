@@ -4,7 +4,6 @@ import javax.swing.JOptionPane;
 
 import model.importcsv.CsvDescription;
 import ch.judos.generic.data.DynamicList;
-import ch.judos.generic.data.StringUtils;
 
 /**
  * @created 28.02.2012
@@ -33,8 +32,8 @@ public class ChooseSeparatorDialog {
 			separator =
 				JOptionPane.showInputDialog("Mehr als ein mögliches Trennzeichen "
 					+ "gefunden. Bitte wähle das passende Trennzeichen:\n"
-					+ "Möglich sind: " + choose + "\n\nAttributezeile: \""
-					+ StringUtils.shorten(this.attLine, 32) + "\"");
+					+ "Möglich sind: " + choose + "\n\nAttributezeile: \"" + this.attLine
+					+ "\"");
 			if (separator != null) {
 				if (this.separators.contains(separator))
 					ok = true;

@@ -6,5 +6,6 @@
 	<classpathentry kind="con" path="org.eclipse.jdt.USER_LIBRARY/commons-lang3-3.1"/>
 	<classpathentry kind="con" path="org.eclipse.jdt.USER_LIBRARY/csvHandling1.01"/>
 	<classpathentry combineaccessrules="false" kind="src" path="/RessourcesJava"/>
+	<classpathentry kind="lib" path="lib/chardet.jar" sourcepath="lib/jchardet-1.1 - src.zip"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>

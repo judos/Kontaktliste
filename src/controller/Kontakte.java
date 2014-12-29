@@ -51,7 +51,7 @@ public class Kontakte implements Savable, MyActionListenerI {
 
 		this.filterGruppe = "";
 		refreshFilter();
-		this.tab.setSelectedPerson(null);
+		// this.tab.setSelectedPerson(null);
 	}
 
 	public Window getWindow() {
@@ -109,7 +109,8 @@ public class Kontakte implements Savable, MyActionListenerI {
 	// Speichert alle Filter Informationen
 	@Override
 	public void saveAll() {
-		Main.config.set(Config.filterPersonWichtig, this.personenFilter.isFilterWichtig());
+		Main.config
+			.set(Config.filterPersonWichtig, this.personenFilter.isFilterWichtig());
 	}
 
 	// Wählt eine Person an und zeigt deren Infos an
@@ -273,7 +274,6 @@ public class Kontakte implements Savable, MyActionListenerI {
 
 	public void refreshWindow() {
 		this.window.repaint();
-
 	}
 
 	public void setEingabeTyp(aktuelleAuswahl eingabeTyp) {

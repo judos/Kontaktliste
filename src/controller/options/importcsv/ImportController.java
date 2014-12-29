@@ -1,7 +1,13 @@
 package controller.options.importcsv;
 
+import helpers.lib.adapter.chardet.CharDetector;
+
+import java.io.BufferedReader;
 import java.io.File;
+import java.io.FileInputStream;
 import java.io.IOException;
+import java.io.InputStreamReader;
+import java.nio.charset.Charset;
 import java.util.ArrayList;
 import java.util.HashMap;
 
@@ -34,8 +40,7 @@ public class ImportController {
 		if (!checkAndChooseSeparator(desc))
 			return;
 		CsvTableData data = desc.getCsvTableData();
-		boolean goOn = findIdentificationAndMatchAttributes(data);
-		if (!goOn)
+		if (!findIdentificationAndMatchAttributes(data))
 			return;
 		ImportCSVData im = new ImportCSVData();
 		im.performImport(data, identificationAtts, att_hash);
@@ -62,17 +67,19 @@ public class ImportController {
 			d.setSeparator(d.getSeparator(0));
 			return true;
 		} else {
-			Notification
-				.notifyErr(
-					"Ungültige Datei",
-					"In dieser CSV-Datei konnte kein gültiges Trennzeichen ermittelt werden. Prüfen Sie die Datei mit einem Editor auf Fehler.");
+			Notification.notifyErr("Ungültige Datei",
+				"In dieser CSV-Datei konnte kein gültiges Trennzeichen ermittelt werden. "
+					+ "Prüfen Sie die Datei mit einem Editor auf Fehler.");
 			return false;
 		}
 	}
 
 	private CsvDescription analyzeFile(File f) {
 		try {
-			ArrayList<String> values = FileUtils.readFileContent(f);
+			Charset c = new CharDetector().detectFile(f);
+			BufferedReader reader =
+				new BufferedReader(new InputStreamReader(new FileInputStream(f), c));
+			ArrayList<String> values = FileUtils.readFileContent(reader);
 			String atts = values.remove(0);
 			return new CsvDescription(atts, values);
 		} catch (IOException e) {

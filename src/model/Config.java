@@ -17,7 +17,7 @@ public class Config implements Savable {
 	public static final String			id		= "id",
 			filterPersonWichtig = "filterPersonWichtig";
 
-	public Config() {
+	private Config() {
 		this.values = new HashMap<String, String>();
 		load();
 	}
@@ -80,8 +80,16 @@ public class Config implements Savable {
 		try {
 			wr.writeFile(Main.dataFolder + "config.csv");
 		} catch (IOException e1) {
-			Main.debugger
-				.debug("Datei konnte nicht geschrieben werden :" + Main.dataFolder + "config.csv");
+			Main.debugger.debug("Datei konnte nicht geschrieben werden :"
+				+ Main.dataFolder + "config.csv");
 		}
+	}
+
+	private static Config	instance;
+
+	public static Config getInstance() {
+		if (instance == null)
+			instance = new Config();
+		return instance;
 	}
 }

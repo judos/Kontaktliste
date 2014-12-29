@@ -5,6 +5,7 @@ import java.awt.event.ActionListener;
 
 import javax.swing.JOptionPane;
 
+import model.kontakte.FilterPerson;
 import model.kontakte.Person;
 import controller.Kontakte;
 
@@ -20,12 +21,19 @@ public class PersonLoschenListener implements ActionListener {
 
 	@Override
 	public void actionPerformed(ActionEvent arg0) {
-		int choice = JOptionPane.showConfirmDialog(null,
-			"Bist du sicher, dass du diese Person löschen willst?",
-			"Person löschen (" + this.person.getFullName() + ")", JOptionPane.YES_NO_OPTION,
-			JOptionPane.ERROR_MESSAGE);
+		int choice =
+			JOptionPane.showConfirmDialog(null,
+				"Bist du sicher, dass du diese Person löschen willst?",
+				"Person löschen (" + this.person.getFullName() + ")",
+				JOptionPane.YES_NO_OPTION, JOptionPane.ERROR_MESSAGE);
 		if (choice == JOptionPane.YES_OPTION) {
 			this.kontakte.deletePerson(person);
+
+			FilterPerson pf = this.kontakte.personenFilter;
+			pf.setFilterName(pf.getFilterName());
+			if (this.kontakte.getSelectedPerson().equals(this.person))
+				this.kontakte.setSelectedP(null);
+
 			kontakte.refreshWindow();
 		}
 	}

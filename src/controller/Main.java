@@ -37,7 +37,7 @@ public class Main {
 			long start = System.currentTimeMillis();
 			worker = new Worker();
 			debugger = new Debugger();
-			config = new Config();
+			config = Config.getInstance();
 			data = new Data();
 			data.load();
 			main = new Main(window);
