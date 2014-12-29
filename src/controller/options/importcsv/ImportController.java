@@ -51,7 +51,7 @@ public class ImportController {
 	}
 
 	private boolean checkAndChooseSeparator(CsvDescription d) {
-		int anz = d.getCoundOfPossibleSeparators();
+		int anz = d.getCountOfPossibleSeparators();
 		if (anz > 1) {
 			ChooseSeparatorDialog dialog = new ChooseSeparatorDialog(d);
 			dialog.block();

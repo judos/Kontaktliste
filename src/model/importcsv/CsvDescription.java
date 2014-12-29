@@ -49,7 +49,7 @@ public class CsvDescription {
 		}
 	}
 
-	public int getCoundOfPossibleSeparators() {
+	public int getCountOfPossibleSeparators() {
 		return this.seps.size();
 	}
 

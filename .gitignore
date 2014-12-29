@@ -1,7 +1,8 @@
 Backup
-Data
-Data 2014-12-28
+Data*
 insert
+bin
+*.class
 
 # Windows image file caches
 Thumbs.db
