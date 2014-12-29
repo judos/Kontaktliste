@@ -1,13 +1,12 @@
 package controller.kontakte.buttons;
 
-import helpers.StringH;
-
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 import javax.swing.JOptionPane;
 
 import model.kontakte.Person;
+import ch.judos.generic.data.StringUtils;
 import controller.Kontakte;
 
 public class CreatePersonListener implements ActionListener {
@@ -30,7 +29,7 @@ public class CreatePersonListener implements ActionListener {
 				null, null, name);
 			if (name != null) {
 				int l1 = name.length();
-				name = StringH.replaceAll(name,
+				name = StringUtils.replaceAll(name,
 					new String[] { "\\", "/", ":", "|", "*", "?", "\"", "<", ">" }, "");
 				if (l1 != name.length()) {
 					msg = "Keine dieser Sonderzeichen sind erlaubt \\ | / : * ? < >";

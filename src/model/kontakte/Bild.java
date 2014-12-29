@@ -1,7 +1,5 @@
 package model.kontakte;
 
-import helpers.Images;
-
 import java.awt.Image;
 import java.awt.Toolkit;
 import java.io.File;
@@ -11,21 +9,21 @@ import javax.swing.ImageIcon;
 
 import model.work.PersonImageLoadingWork;
 import model.work.Work;
-
+import ch.judos.generic.graphics.ImageUtils;
 import controller.Main;
 
 public class Bild {
-	public String filename;
+	public String			filename;
 
-	public String beschreibung;
-	public boolean valid;
+	public String			beschreibung;
+	public boolean			valid;
 
 	// saves the work which can be done later, when window is opened and user is
 	// doing some mousy stuff
-	private Work todo;
-	public ImageIcon stdIcon;
+	private Work			todo;
+	public ImageIcon		stdIcon;
 
-	private static String path = Main.dataFolder + "Bilder/";
+	private static String	path	= Main.dataFolder + "Bilder/";
 
 	public Bild(String filename) throws IOException {
 		constructor(filename, "");
@@ -35,8 +33,7 @@ public class Bild {
 		constructor(filename, beschreibung);
 	}
 
-	private void constructor(String filename, String beschreibung)
-			throws IOException {
+	private void constructor(String filename, String beschreibung) throws IOException {
 		this.valid = true;
 		this.filename = filename;
 		File f = new File(path + this.filename);
@@ -52,9 +49,8 @@ public class Bild {
 	public ImageIcon getStdIcon() {
 		if (this.stdIcon == null) {
 			Main.worker.todo.remove(this.todo);
-			Image img = Toolkit.getDefaultToolkit().getImage(
-					path + this.filename);
-			this.stdIcon = new ImageIcon(Images.fitInto(img, 100, 150));
+			Image img = Toolkit.getDefaultToolkit().getImage(path + this.filename);
+			this.stdIcon = new ImageIcon(ImageUtils.fitInto(img, 100, 150));
 		}
 		return this.stdIcon;
 	}

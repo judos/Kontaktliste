@@ -83,7 +83,7 @@ public class Window extends JFrame {
 		refreshList();
 
 		pack();
-		helpers.WindowH.centerWindow(this);
+		ch.judos.generic.gui.WindowUtils.centerWindow(this);
 		setVisible(true);
 
 		this.addWindowListener(new WindowListener());

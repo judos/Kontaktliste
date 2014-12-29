@@ -1,7 +1,5 @@
 package view.options;
 
-import helpers.JDialogWithTaskbarEntry;
-
 import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Dimension;
@@ -39,6 +37,7 @@ import javax.swing.event.ListSelectionListener;
 import model.PersonDisplay;
 import model.kontakte.FilterPerson;
 import model.kontakte.Person;
+import ch.judos.generic.swing.JDialogWithTaskbarEntry;
 
 /**
  * @created 28.02.2012
@@ -116,15 +115,16 @@ public class FindPersonDialog extends JDialogWithTaskbarEntry {
 	public static final int	RESULT_CLOSE_IMPORT		= 4;
 
 	public static void main(String[] args) {
-		FindPersonDialog dialog = new FindPersonDialog(new String[] { "Julian", "Schelker" },
-			FilterPerson.createNormalFilter(), new PersonDisplay[] {},
-			new String[] { "email", "Git" }, new String[] { "judos@gmx.ch", "igit!" });
+		FindPersonDialog dialog =
+			new FindPersonDialog(new String[] { "Julian", "Schelker" }, FilterPerson
+				.createNormalFilter(), new PersonDisplay[] {}, new String[] { "email",
+				"Git" }, new String[] { "judos@gmx.ch", "igit!" });
 		dialog.setModalityType(ModalityType.APPLICATION_MODAL);
 		dialog.setVisible(true);
 	}
 
-	public FindPersonDialog(String[] name, FilterPerson f, PersonDisplay[] nearest, String[] atts,
-			String[] values) {
+	public FindPersonDialog(String[] name, FilterPerson f, PersonDisplay[] nearest,
+			String[] atts, String[] values) {
 		super("Kontaktliste Import");
 		this.name = name;
 		this.setModalityType(ModalityType.APPLICATION_MODAL);
@@ -166,8 +166,9 @@ public class FindPersonDialog extends JDialogWithTaskbarEntry {
 		contentPanel.setLayout(gbl_contentPanel);
 		{
 			JPanel panelInfos = new JPanel();
-			panelInfos.setBorder(new TitledBorder(new LineBorder(new Color(128, 128, 128)),
-				"\"" + this.fullname + "\" wurde nicht gefunden. Informationen des Kontaktes:",
+			panelInfos.setBorder(new TitledBorder(
+				new LineBorder(new Color(128, 128, 128)), "\"" + this.fullname
+					+ "\" wurde nicht gefunden. Informationen des Kontaktes:",
 				TitledBorder.LEADING, TitledBorder.TOP, null, Color.RED));
 			GridBagConstraints gbc_panelInfos = new GridBagConstraints();
 			gbc_panelInfos.weightx = 1.0;
@@ -202,7 +203,8 @@ public class FindPersonDialog extends JDialogWithTaskbarEntry {
 						gbc_textField.insets = new Insets(0, 0, 0, 5);
 						gbc_textField.fill = GridBagConstraints.HORIZONTAL;
 						gbc_textField.gridx = i % DISPLAY_PER_ROW;
-						gbc_textField.gridy = (int) Math.floor(i / DISPLAY_PER_ROW) * 2 + 1;
+						gbc_textField.gridy =
+							(int) Math.floor(i / DISPLAY_PER_ROW) * 2 + 1;
 						panelInfos.add(textField, gbc_textField);
 						textField.setColumns(10);
 					}
@@ -222,8 +224,8 @@ public class FindPersonDialog extends JDialogWithTaskbarEntry {
 		}
 		{
 			JPanel simililarContacts = new JPanel();
-			simililarContacts.setBorder(new CompoundBorder(
-				new LineBorder(new Color(192, 192, 192)), new EmptyBorder(5, 5, 5, 5)));
+			simililarContacts.setBorder(new CompoundBorder(new LineBorder(new Color(192,
+				192, 192)), new EmptyBorder(5, 5, 5, 5)));
 			GridBagConstraints gbc_simililarContacts = new GridBagConstraints();
 			gbc_simililarContacts.anchor = GridBagConstraints.NORTHWEST;
 			gbc_simililarContacts.insets = new Insets(0, 0, 0, 5);
@@ -235,7 +237,8 @@ public class FindPersonDialog extends JDialogWithTaskbarEntry {
 			gbl_simililarContacts.columnWidths = new int[] { 129, 0 };
 			gbl_simililarContacts.rowHeights = new int[] { 25, 0, 0 };
 			gbl_simililarContacts.columnWeights = new double[] { 1.0, Double.MIN_VALUE };
-			gbl_simililarContacts.rowWeights = new double[] { 0.0, 1.0, Double.MIN_VALUE };
+			gbl_simililarContacts.rowWeights =
+				new double[] { 0.0, 1.0, Double.MIN_VALUE };
 			simililarContacts.setLayout(gbl_simililarContacts);
 			{
 				this.rdbtnSimilarContacts = new JRadioButton("Kontakt w\u00E4hlen:");
@@ -255,23 +258,27 @@ public class FindPersonDialog extends JDialogWithTaskbarEntry {
 				JScrollPane scrollPaneSimilarContacts = new JScrollPane();
 				scrollPaneSimilarContacts.setPreferredSize(new Dimension(150, 200));
 				scrollPaneSimilarContacts.setMinimumSize(new Dimension(150, 200));
-				GridBagConstraints gbc_scrollPaneSimilarContacts = new GridBagConstraints();
+				GridBagConstraints gbc_scrollPaneSimilarContacts =
+					new GridBagConstraints();
 				gbc_scrollPaneSimilarContacts.fill = GridBagConstraints.BOTH;
 				gbc_scrollPaneSimilarContacts.gridx = 0;
 				gbc_scrollPaneSimilarContacts.gridy = 1;
-				simililarContacts.add(scrollPaneSimilarContacts, gbc_scrollPaneSimilarContacts);
+				simililarContacts.add(scrollPaneSimilarContacts,
+					gbc_scrollPaneSimilarContacts);
 				{
 					this.listSimilarContacts = new JList<PersonDisplay>(this.nearest);
-					listSimilarContacts.addListSelectionListener(createSimilarListListener());
-					listSimilarContacts.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
+					listSimilarContacts
+						.addListSelectionListener(createSimilarListListener());
+					listSimilarContacts
+						.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
 					scrollPaneSimilarContacts.setViewportView(listSimilarContacts);
 				}
 			}
 		}
 		{
 			JPanel newContact = new JPanel();
-			newContact.setBorder(new CompoundBorder(new LineBorder(new Color(192, 192, 192)),
-				new EmptyBorder(5, 5, 5, 5)));
+			newContact.setBorder(new CompoundBorder(new LineBorder(new Color(192, 192,
+				192)), new EmptyBorder(5, 5, 5, 5)));
 			GridBagConstraints gbc_newContact = new GridBagConstraints();
 			gbc_newContact.anchor = GridBagConstraints.NORTHWEST;
 			gbc_newContact.insets = new Insets(0, 0, 0, 5);
@@ -351,8 +358,8 @@ public class FindPersonDialog extends JDialogWithTaskbarEntry {
 		}
 		{
 			JPanel panelSearch = new JPanel();
-			panelSearch.setBorder(new CompoundBorder(new LineBorder(new Color(192, 192, 192)),
-				new EmptyBorder(5, 5, 5, 5)));
+			panelSearch.setBorder(new CompoundBorder(new LineBorder(new Color(192, 192,
+				192)), new EmptyBorder(5, 5, 5, 5)));
 			GridBagConstraints gbc_panelSearch = new GridBagConstraints();
 			gbc_panelSearch.anchor = GridBagConstraints.NORTHWEST;
 			gbc_panelSearch.fill = GridBagConstraints.BOTH;
@@ -460,7 +467,8 @@ public class FindPersonDialog extends JDialogWithTaskbarEntry {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				if (resultType == RESULT_CREATE_CONTACT)
-					result = new Person(textFieldPrename.getText(), textFieldName.getText());
+					result =
+						new Person(textFieldPrename.getText(), textFieldName.getText());
 				if (resultType != 0)
 					setVisible(false);
 			}
@@ -477,8 +485,10 @@ public class FindPersonDialog extends JDialogWithTaskbarEntry {
 	}
 
 	private void askToCloseForSure() {
-		int option = JOptionPane.showConfirmDialog(this,
-			"Wollen Sie den Import wirklich abbrechen?", "Import", JOptionPane.YES_NO_OPTION);
+		int option =
+			JOptionPane.showConfirmDialog(this,
+				"Wollen Sie den Import wirklich abbrechen?", "Import",
+				JOptionPane.YES_NO_OPTION);
 		if (option == JOptionPane.YES_OPTION) {
 			this.resultType = RESULT_CLOSE_IMPORT;
 			this.result = null;

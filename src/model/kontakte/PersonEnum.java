@@ -1,7 +1,5 @@
 package model.kontakte;
 
-import helpers.StringH;
-
 import java.util.Collections;
 import java.util.Comparator;
 
@@ -9,12 +7,13 @@ import model.kontakte.attributes.AttributeType;
 import model.kontakte.attributes.DateAttribute;
 import model.kontakte.attributes.StringAttribute;
 import ch.judos.generic.data.DynamicList;
+import ch.judos.generic.data.StringUtils;
 
 public enum PersonEnum {
 	PRENAME("vorname", str()), NAME("name", str()), DESCRIPTION("beschreibung", str()), EMAIL(
-			"email", str()), MSN("msn", str()), PHONE("tel", str()), PHONE2("hometel", str()), STREET(
-			"strasse", str()), PLZ("plz", str()), CITY("ort", str()), COUNTRY("land", str()), DATE(
-			"geburtstag", new DateAttribute());
+			"email", str()), MSN("msn", str()), PHONE("tel", str()), PHONE2("hometel",
+			str()), STREET("strasse", str()), PLZ("plz", str()), CITY("ort", str()), COUNTRY(
+			"land", str()), DATE("geburtstag", new DateAttribute());
 
 	public static DynamicList<PersonEnum>	all	= new DynamicList<PersonEnum>();
 	static {
@@ -37,7 +36,7 @@ public enum PersonEnum {
 
 	@Override
 	public String toString() {
-		return StringH.capitalize(this.name);
+		return StringUtils.capitalizeWord(this.name);
 	}
 
 	public static Comparator<PersonEnum> getComparator() {

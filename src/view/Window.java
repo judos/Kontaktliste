@@ -1,7 +1,5 @@
 package view;
 
-import helpers.WindowH;
-
 import java.awt.Color;
 import java.awt.Component;
 import java.awt.Dimension;
@@ -13,6 +11,7 @@ import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JTabbedPane;
 
+import ch.judos.generic.gui.WindowUtils;
 import model.Savable;
 import controller.Main;
 import controller.WindowListener;
@@ -62,7 +61,7 @@ public class Window extends JFrame implements Savable {
 	public void finishCenterAndShow() {
 		// Fenster vollenden
 		pack();
-		WindowH.centerWindow(this);
+		WindowUtils.centerWindow(this);
 		int width, height;
 
 		if (Main.config != null) {

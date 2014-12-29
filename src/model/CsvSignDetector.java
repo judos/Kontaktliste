@@ -1,18 +1,18 @@
 package model;
 
-import helpers.StringH;
-
 import java.util.ArrayList;
 import java.util.HashMap;
 
+import ch.judos.generic.data.StringUtils;
+
 public class CsvSignDetector {
-	
+
 	private HashMap<String, Integer>	liste;
-	
+
 	public CsvSignDetector() {
 		this.liste = new HashMap<String, Integer>();
 	}
-	
+
 	/**
 	 * uses the first line to find possible separation characters
 	 * 
@@ -20,8 +20,7 @@ public class CsvSignDetector {
 	 * @return number of possible characters acting as separation
 	 */
 	public int firstLine(String line) {
-		StringH li = new StringH(line);
-		for (String c : li) {
+		for (String c : StringUtils.getCharIterableString(line)) {
 			if (this.liste.containsKey(c))
 				this.liste.put(c, this.liste.get(c) + 1);
 			else
@@ -29,7 +28,7 @@ public class CsvSignDetector {
 		}
 		return this.liste.keySet().size();
 	}
-	
+
 	/**
 	 * checks the possibilities with the information of further lines<br>
 	 * removes candidates
@@ -39,8 +38,7 @@ public class CsvSignDetector {
 	 */
 	public int addLine(String line) {
 		HashMap<String, Integer> cur = new HashMap<String, Integer>();
-		StringH li = new StringH(line);
-		for (String c : li) {
+		for (String c : StringUtils.getCharIterableString(line)) {
 			if (cur.containsKey(c))
 				cur.put(c, cur.get(c) + 1);
 			else
@@ -57,16 +55,16 @@ public class CsvSignDetector {
 			this.liste.remove(key);
 		return this.liste.keySet().size();
 	}
-	
+
 	public String[] getPossibleSeparators() {
 		return (String[]) this.liste.keySet().toArray(new String[] {});
 	}
-	
+
 	/**
 	 * @return
 	 */
 	public int countPossibilities() {
 		return this.liste.size();
 	}
-	
+
 }

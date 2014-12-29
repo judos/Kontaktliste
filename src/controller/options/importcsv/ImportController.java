@@ -1,8 +1,5 @@
 package controller.options.importcsv;
 
-import helpers.Basic;
-import helpers.FileH;
-
 import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
@@ -13,6 +10,8 @@ import model.importcsv.CsvTableData;
 import model.kontakte.PersonEnum;
 import view.options.AttributeMatchDialog;
 import view.options.ChooseSeparatorDialog;
+import ch.judos.generic.files.FileUtils;
+import ch.judos.generic.gui.Notification;
 import controller.Main;
 
 /**
@@ -63,17 +62,17 @@ public class ImportController {
 			d.setSeparator(d.getSeparator(0));
 			return true;
 		} else {
-			Basic
-				.notify(
+			Notification
+				.notifyErr(
 					"Ungültige Datei",
-					"In dieser CSV-Datei konnte kein gültiges Trennzeichen" + " ermittelt werden. Prüfen Sie die Datei mit einem" + " Editor auf Fehler.");
+					"In dieser CSV-Datei konnte kein gültiges Trennzeichen ermittelt werden. Prüfen Sie die Datei mit einem Editor auf Fehler.");
 			return false;
 		}
 	}
 
 	private CsvDescription analyzeFile(File f) {
 		try {
-			ArrayList<String> values = FileH.readFileContent(f);
+			ArrayList<String> values = FileUtils.readFileContent(f);
 			String atts = values.remove(0);
 			return new CsvDescription(atts, values);
 		} catch (IOException e) {
@@ -83,10 +82,10 @@ public class ImportController {
 	}
 
 	private File selectFile() {
-		// File desktop = FileH.getDesktopDir();
-		// XXX: AFTER IMPORT reset initial path
-		File f = FileH.RequestFile("D:\\Julian\\eclipse workspace juno\\Kontaktliste\\insert",
-			"CSV-Datei", new String[] { "csv" });
+		// File start = FileH.getDesktopDir();
+		// XXX: AFTER IMPORT reset start path
+		File start = new File("D:\\Julian\\eclipse workspace juno\\Kontaktliste\\insert");
+		File f = FileUtils.requestFile(start, "CSV-Datei", new String[] { "csv" });
 		return f;
 	}
 

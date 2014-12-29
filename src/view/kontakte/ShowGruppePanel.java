@@ -15,6 +15,7 @@ import javax.swing.JTextArea;
 
 import model.kontakte.Gruppe;
 import view.KontaktTab.aktuelleAuswahl;
+import ch.judos.generic.swing.JTextAreas;
 import controller.Kontakte;
 import controller.kontakte.buttons.OpenChooseKontakte;
 import controller.kontakte.editPerson.BeschreibungListener;
@@ -97,7 +98,7 @@ public class ShowGruppePanel extends JPanel implements SupportsEingabeTyp {
 
 	private Component createBeschreibungField() {
 		beschreibung = new JTextArea();
-		helpers.JTextAreas.setTabChangesFocus(beschreibung);
+		JTextAreas.setTabChangesFocus(beschreibung);
 		beschreibung.setLineWrap(true);
 		beschreibung.setWrapStyleWord(true);
 		beschreibung.addKeyListener(new BeschreibungListener(this.kontakte, beschreibung,

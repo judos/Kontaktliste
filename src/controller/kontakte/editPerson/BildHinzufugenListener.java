@@ -1,7 +1,5 @@
 package controller.kontakte.editPerson;
 
-import helpers.FileH;
-
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.File;
@@ -11,13 +9,15 @@ import javax.swing.JOptionPane;
 
 import model.kontakte.Bild;
 import model.kontakte.Person;
+import ch.judos.generic.files.FileUtils;
 import controller.Kontakte;
 import controller.Main;
 
 public class BildHinzufugenListener implements ActionListener {
 
-	private static String	currentPath	= System.getProperty("user.home") + "\\Desktop";
-	private Kontakte		kontakte;
+	private static File	currentPath	= new File(System.getProperty("user.home")
+										+ "\\Desktop");
+	private Kontakte	kontakte;
 
 	public BildHinzufugenListener(Kontakte kontakte) {
 		this.kontakte = kontakte;
@@ -26,7 +26,7 @@ public class BildHinzufugenListener implements ActionListener {
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		String[] filetypes = { "jpg" };
-		File file = FileH.RequestFile(currentPath, "Bilddatei (.jpg)", filetypes);
+		File file = FileUtils.requestFile(currentPath, "Bilddatei (.jpg)", filetypes);
 		if (file == null)
 			return;
 
@@ -39,8 +39,9 @@ public class BildHinzufugenListener implements ActionListener {
 			bilderDir.mkdir();
 
 		// copy file to bilder directory
-		boolean ok = FileH.copyFile(file.getAbsolutePath(), Main.dataFolder + "Bilder\\" + person
-			.getFullName() + " " + bilder + ".jpg");
+		boolean ok =
+			FileUtils.copyFile(file, new File(Main.dataFolder + "Bilder\\"
+				+ person.getFullName() + " " + bilder + ".jpg"));
 
 		try {
 			if (!ok)

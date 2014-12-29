@@ -1,7 +1,5 @@
 package view.kontakte;
 
-import helpers.FocusTraversalPolicyList;
-
 import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Component;
@@ -29,6 +27,8 @@ import model.kontakte.Person;
 import view.Images;
 import view.KontaktTab.aktuelleAuswahl;
 import ch.judos.generic.data.DynamicList;
+import ch.judos.generic.swing.FocusTraversalPolicyList;
+import ch.judos.generic.swing.JTextAreas;
 import controller.Kontakte;
 import controller.kontakte.editPerson.BeschreibungListener;
 import controller.kontakte.editPerson.BildListener;
@@ -219,8 +219,10 @@ public class ShowKontaktPanel extends JPanel implements SupportsEingabeTyp {
 		c.fill = GridBagConstraints.HORIZONTAL;
 
 		// Focus Traversal Policy
-		FocusTraversalPolicyList tabOrder = new FocusTraversalPolicyList(
-			new Component[] { beschreibung, personTel, personTelHome, personEmail, personMSN, personGeb, personStrasse, personPLZ, personOrt, personLand });
+		FocusTraversalPolicyList tabOrder =
+			new FocusTraversalPolicyList(new Component[] { beschreibung, personTel,
+				personTelHome, personEmail, personMSN, personGeb, personStrasse,
+				personPLZ, personOrt, personLand });
 		setFocusTraversalPolicy(tabOrder);
 		setFocusTraversalPolicyProvider(true);
 	}
@@ -267,7 +269,8 @@ public class ShowKontaktPanel extends JPanel implements SupportsEingabeTyp {
 
 	private Component createPersonBild() {
 		Image image = Images.anonymousIcon;
-		anonymousIcon = new ImageIcon(image.getScaledInstance(100, 140, Image.SCALE_SMOOTH));
+		anonymousIcon =
+			new ImageIcon(image.getScaledInstance(100, 140, Image.SCALE_SMOOTH));
 
 		bildLabel = new JLabel(anonymousIcon);
 		bildLabel.addMouseListener(new BildListener(this.kontakte));
@@ -345,7 +348,8 @@ public class ShowKontaktPanel extends JPanel implements SupportsEingabeTyp {
 		personTelHome = new JTextField();
 		personTelHome.setMinimumSize(new Dimension(70, 20));
 		personTelHome.setPreferredSize(new Dimension(70, 20));
-		personTelHome.addKeyListener(new TelefonHomeListener(this.kontakte, personTelHome));
+		personTelHome
+			.addKeyListener(new TelefonHomeListener(this.kontakte, personTelHome));
 		return personTelHome;
 	}
 
@@ -359,7 +363,7 @@ public class ShowKontaktPanel extends JPanel implements SupportsEingabeTyp {
 
 	private Component createBeschreibungField() {
 		beschreibung = new JTextArea();
-		helpers.JTextAreas.setTabChangesFocus(beschreibung);
+		JTextAreas.setTabChangesFocus(beschreibung);
 
 		beschreibung.setLineWrap(true);
 		beschreibung.setWrapStyleWord(true);
@@ -409,9 +413,9 @@ public class ShowKontaktPanel extends JPanel implements SupportsEingabeTyp {
 
 	public void showPerson(Person p) {
 		DynamicList<JTextComponent> list = new DynamicList<JTextComponent>();
-		list.addAll(this.beschreibung, this.personTel, this.personTelHome, this.personEmail,
-			this.personMSN, this.personGeb, this.personStrasse, this.personPLZ, this.personOrt,
-			this.personLand);
+		list.addAll(this.beschreibung, this.personTel, this.personTelHome,
+			this.personEmail, this.personMSN, this.personGeb, this.personStrasse,
+			this.personPLZ, this.personOrt, this.personLand);
 		if (p == null) {
 			disableFields(list);
 			this.titleLabel.setText("Vorname Nachname");

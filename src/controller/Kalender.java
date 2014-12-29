@@ -1,7 +1,5 @@
 package controller;
 
-import helpers.StringH;
-
 import java.awt.event.KeyEvent;
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -12,6 +10,7 @@ import model.Savable;
 import model.kontakte.Person;
 import view.KalenderTab;
 import view.Window;
+import ch.judos.generic.data.StringUtils;
 
 public class Kalender implements Savable {
 
@@ -34,7 +33,7 @@ public class Kalender implements Savable {
 				if (p.geburtstag.isValid()) {
 					String gebDMY = p.geburtstag.toString();
 					// 5 Zeichen hinten entfernen (.YYYY)
-					String geburtstag = StringH.substr(gebDMY, 0, -5);
+					String geburtstag = StringUtils.substr(gebDMY, 0, -5);
 
 					List<Person> list = map.get(geburtstag);
 					if (list == null) {

@@ -1,7 +1,5 @@
 package view;
 
-import helpers.Swing;
-
 import java.awt.Component;
 import java.awt.Dimension;
 import java.awt.GridBagConstraints;
@@ -30,6 +28,7 @@ import model.kontakte.Person;
 import view.kontakte.ShowGruppePanel;
 import view.kontakte.ShowKontaktPanel;
 import view.missingInfo.ButtonListener;
+import ch.judos.generic.swing.Swing;
 import controller.FilterPersonName;
 import controller.FilterPersonWichtig;
 import controller.Kontakte;
@@ -102,7 +101,8 @@ public class KontaktTab extends JPanel {
 
 	private Component createEastPanel() {
 		eastPanel = new JPanel();
-		eastPanel.setBorder(Swing.createTitledLineBorder("Auswahl", Window.titledBorderColor));
+		eastPanel.setBorder(Swing.createTitledLineBorder("Auswahl",
+			Window.titledBorderColor));
 
 		eastPanel.setLayout(new GridBagLayout());
 
@@ -117,7 +117,8 @@ public class KontaktTab extends JPanel {
 		eastPanelGruppe.setPreferredSize(d);
 		eastPanelGruppe.setMinimumSize(d);
 
-		UIManager.getDefaults().put("TabbedPane.contentBorderInsets", new Insets(1, 1, 1, 1));
+		UIManager.getDefaults().put("TabbedPane.contentBorderInsets",
+			new Insets(1, 1, 1, 1));
 		UIManager.getDefaults().put("TabbedPane.tabsOverlapBorder", true);
 
 		buildUpEastPanelContent();
@@ -181,7 +182,8 @@ public class KontaktTab extends JPanel {
 
 	private Component createCenterPanel() {
 		JPanel panelMitte = new JPanel();
-		panelMitte.setBorder(Swing.createTitledLineBorder("Kontakte", Window.titledBorderColor));
+		panelMitte.setBorder(Swing.createTitledLineBorder("Kontakte",
+			Window.titledBorderColor));
 
 		panelMitte.setLayout(new GridBagLayout());
 		GridBagConstraints c = new GridBagConstraints();
@@ -234,8 +236,10 @@ public class KontaktTab extends JPanel {
 		listPersonen.addListSelectionListener(new PersonLSL(this.kontakte, listPersonen));
 		listPersonen.setVisibleRowCount(20);
 		JScrollPane listScrollPane = new JScrollPane(listPersonen);
-		listScrollPane.setHorizontalScrollBarPolicy(JScrollPane.HORIZONTAL_SCROLLBAR_NEVER);
-		listScrollPane.setVerticalScrollBarPolicy(JScrollPane.VERTICAL_SCROLLBAR_AS_NEEDED);
+		listScrollPane
+			.setHorizontalScrollBarPolicy(JScrollPane.HORIZONTAL_SCROLLBAR_NEVER);
+		listScrollPane
+			.setVerticalScrollBarPolicy(JScrollPane.VERTICAL_SCROLLBAR_AS_NEEDED);
 		listScrollPane.setMinimumSize(new Dimension(150, 250));
 		listScrollPane.setPreferredSize(new Dimension(150, 250));
 		panelMitte.add(listScrollPane, c);
@@ -271,7 +275,8 @@ public class KontaktTab extends JPanel {
 
 	private JPanel createWestPanel() {
 		JPanel panelLeft = new JPanel();
-		panelLeft.setBorder(Swing.createTitledLineBorder("Filter", Window.titledBorderColor));
+		panelLeft.setBorder(Swing.createTitledLineBorder("Filter",
+			Window.titledBorderColor));
 
 		panelLeft.setLayout(new GridBagLayout());
 		GridBagConstraints c = new GridBagConstraints();
@@ -289,7 +294,8 @@ public class KontaktTab extends JPanel {
 		filterNameField = new JTextField();
 		filterNameField.setMinimumSize(new Dimension(80, 20));
 		filterNameField.setPreferredSize(new Dimension(80, 20));
-		filterNameField.addKeyListener(new FilterPersonName(filterNameField, this.filter));
+		filterNameField
+			.addKeyListener(new FilterPersonName(filterNameField, this.filter));
 		panelLeft.add(filterNameField, c);
 
 		// Telefon Filter/ Eingabefeld
@@ -326,12 +332,14 @@ public class KontaktTab extends JPanel {
 		listGruppenModel = new DefaultListModel<String>();
 		listGruppen = new JList<String>(listGruppenModel);
 		listGruppen.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
-		listGruppen
-			.addListSelectionListener(new GruppeLSL(this.kontakte, listGruppen, this.filter));
+		listGruppen.addListSelectionListener(new GruppeLSL(this.kontakte, listGruppen,
+			this.filter));
 		listGruppen.addMouseListener(new GruppeLML(this.kontakte, listGruppen));
 		JScrollPane listScrollPane = new JScrollPane(listGruppen);
-		listScrollPane.setHorizontalScrollBarPolicy(JScrollPane.HORIZONTAL_SCROLLBAR_NEVER);
-		listScrollPane.setVerticalScrollBarPolicy(JScrollPane.VERTICAL_SCROLLBAR_AS_NEEDED);
+		listScrollPane
+			.setHorizontalScrollBarPolicy(JScrollPane.HORIZONTAL_SCROLLBAR_NEVER);
+		listScrollPane
+			.setVerticalScrollBarPolicy(JScrollPane.VERTICAL_SCROLLBAR_AS_NEEDED);
 		listScrollPane.setMinimumSize(new Dimension(150, 250));
 		listScrollPane.setPreferredSize(new Dimension(150, 250));
 		panelLeft.add(listScrollPane, c);

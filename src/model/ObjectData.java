@@ -1,12 +1,11 @@
 package model;
 
-import helpers.StringH;
-
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.InputMismatchException;
 import java.util.Set;
 
+import ch.judos.generic.data.StringUtils;
 import controller.Main;
 
 public class ObjectData {
@@ -24,12 +23,12 @@ public class ObjectData {
 			this.valid = false;
 			return;
 		}
-		if (!StringH.substr(line, -1).equals("}")) {
+		if (!StringUtils.substr(line, -1).equals("}")) {
 			line += "}";
 			Main.debugger.debug("Kein } am Objektende gefunden: " + line);
 		}
 
-		this.name = StringH.substr(line, 0, pos1);
+		this.name = StringUtils.substr(line, 0, pos1);
 
 		String attGroup = line.substring(pos1 + 2, line.length() - 1);
 

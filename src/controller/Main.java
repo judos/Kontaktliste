@@ -1,7 +1,5 @@
 package controller;
 
-import helpers.FileH;
-
 import java.io.File;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
@@ -15,6 +13,7 @@ import model.Savable;
 import view.Images;
 import view.Window;
 import ch.judos.generic.data.DynamicList;
+import ch.judos.generic.files.FileUtils;
 
 public class Main {
 
@@ -77,7 +76,7 @@ public class Main {
 		Date heute = new Date();
 		String signatur = format.format(heute);
 
-		FileH.copyDirectory("Data", "Backup\\Data" + signatur);
+		FileUtils.copyDirectory(new File("Data"), new File("Backup\\Data" + signatur));
 	}
 
 	public static void exit() {
