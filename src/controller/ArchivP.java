@@ -39,6 +39,7 @@ public class ArchivP implements Savable, ActionListener {
 	public void saveAll() {
 		BufferedWriter x;
 		try {
+			FileUtils.checkOrCreateDir(new File(Main.dataFolder));
 			x = FileUtils.getWriterForFile(new File(Main.dataFolder + "ArchivP.txt"));
 		} catch (IOException e) {
 			Main.debugger.debug("ArchivP file could not be saved.");

@@ -20,7 +20,9 @@ public class Main {
 	public static final float	VERSION				= 1.53f;
 	public static final boolean	RELEASE				= false;
 
-	public static String		dataFolder			= "Data/";
+	public static String		softwareFolder		= "SoftwareData/";
+	public static String		dataFolder			= "UserData/";
+	public static String		backupFolder		= "UserData Backup/";
 	public static Debugger		debugger;
 	public static Config		config;
 	public static Main			main;
@@ -68,15 +70,14 @@ public class Main {
 	}
 
 	public static void backup() {
-		File file = new File("Backup");
-		if (!file.exists())
-			file.mkdir();
+		FileUtils.checkOrCreateDir(new File(backupFolder));
 
 		DateFormat format = new SimpleDateFormat("yyyy-MM-dd HH-mm");
 		Date heute = new Date();
 		String signatur = format.format(heute);
 
-		FileUtils.copyDirectory(new File("Data"), new File("Backup\\Data" + signatur));
+		FileUtils.copyDirectory(new File(dataFolder), new File(backupFolder + dataFolder
+			+ signatur));
 	}
 
 	public static void exit() {
