@@ -17,7 +17,7 @@ import ch.judos.generic.files.FileUtils;
 
 public class Main {
 
-	public static final float	VERSION				= 1.53f;
+	public static final float	VERSION				= 1.54f;
 	public static final boolean	RELEASE				= false;
 
 	public static String		softwareFolder		= "SoftwareData/";
